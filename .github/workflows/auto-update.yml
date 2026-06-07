@@ -1,0 +1,75 @@
+name: auto-update
+
+# just-tic의 최신 릴리스를 폴링해 jtic Formula를 자동 갱신한다.
+# 공개 릴리스 데이터만 읽고(인증 불필요) 이 레포 자신의 토큰으로 커밋하므로 PAT가 필요 없다.
+on:
+  schedule:
+    - cron: "0 * * * *" # 매시 정각
+  workflow_dispatch: {} # 수동 실행 버튼
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Update jtic formula
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          latest=$(gh api repos/kihyun1998/just-tic/releases/latest --jq .tag_name)
+          v="${latest#v}"
+          cur=$(grep -oP 'version "\K[^"]+' Formula/jtic.rb)
+          if [ "$v" = "$cur" ]; then
+            echo "이미 최신 ($cur) — 변경 없음"
+            exit 0
+          fi
+          echo "갱신: $cur -> $v"
+          base="https://github.com/kihyun1998/just-tic/releases/download/v$v"
+          sha() { curl -sSL "$1" -o t.bin; sha256sum t.bin | cut -d' ' -f1; }
+          mac_arm=$(sha "$base/jtic-v$v-aarch64-apple-darwin.tar.gz")
+          mac_x64=$(sha "$base/jtic-v$v-x86_64-apple-darwin.tar.gz")
+          linux=$(sha "$base/jtic-v$v-x86_64-unknown-linux-gnu.tar.gz")
+          rm -f t.bin
+          cat > Formula/jtic.rb <<EOF
+          class Jtic < Formula
+            desc "오늘 git 커밋에서 추가/삭제한 줄 수(+/-)를 한 줄로 보여주는 CLI"
+            homepage "https://github.com/kihyun1998/just-tic"
+            version "$v"
+            license any_of: ["MIT", "Apache-2.0"]
+
+            on_macos do
+              on_arm do
+                url "$base/jtic-v$v-aarch64-apple-darwin.tar.gz"
+                sha256 "$mac_arm"
+              end
+              on_intel do
+                url "$base/jtic-v$v-x86_64-apple-darwin.tar.gz"
+                sha256 "$mac_x64"
+              end
+            end
+
+            on_linux do
+              on_intel do
+                url "$base/jtic-v$v-x86_64-unknown-linux-gnu.tar.gz"
+                sha256 "$linux"
+              end
+            end
+
+            def install
+              bin.install "jtic"
+            end
+
+            test do
+              assert_match "jtic #{version}", shell_output("#{bin}/jtic --version")
+            end
+          end
+          EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "jtic $v 자동 업데이트"
+          git push
