@@ -1,30 +1,34 @@
 # kihyun1998 Homebrew tap
 
-[kihyun1998](https://github.com/kihyun1998)의 CLI 도구를 위한 [Homebrew](https://brew.sh) tap입니다. (macOS / Linux)
+A [Homebrew](https://brew.sh) tap for [kihyun1998](https://github.com/kihyun1998)'s CLI tools. (macOS / Linux)
 
-## 사용법
+## Usage
 
 ```bash
 brew install kihyun1998/tap/jtic
 ```
 
-또는 tap을 먼저 추가한 뒤 설치:
+Or tap first, then install:
 
 ```bash
 brew tap kihyun1998/tap
 brew install jtic
 ```
 
-업데이트:
+Update:
 
 ```bash
 brew upgrade jtic
 ```
 
-## 도구
+## Tools
 
-| 이름 | 설명 |
-|------|------|
-| [`jtic`](https://github.com/kihyun1998/just-tic) | 오늘 git 커밋에서 추가/삭제한 줄 수(+/-)를 한 줄로 보여주는 CLI |
+| Name | Description |
+|------|-------------|
+| [`jtic`](https://github.com/kihyun1998/just-tic) | One-line CLI showing how many lines you added/removed (+/-) in today's git commits |
 
-새 도구를 추가하려면 `Formula/`에 Formula `.rb`를 하나 더 두면 됩니다.
+To add a new tool, drop another Formula `.rb` into `Formula/`.
+
+## Auto-update
+
+`.github/workflows/auto-update.yml` runs hourly, polls each tool's latest GitHub release (public API, no auth), and regenerates the formula's URLs and SHA256 sums automatically — no personal access token required.
