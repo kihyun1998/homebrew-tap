@@ -1,24 +1,24 @@
 class Jtic < Formula
   desc "오늘 git 커밋에서 추가/삭제한 줄 수(+/-)를 한 줄로 보여주는 CLI"
   homepage "https://github.com/kihyun1998/just-tic"
-  version "1.2.0"
+  version "1.2.1"
   license any_of: ["MIT", "Apache-2.0"]
 
   on_macos do
     on_arm do
-      url "https://github.com/kihyun1998/just-tic/releases/download/v1.2.0/jtic-v1.2.0-aarch64-apple-darwin.tar.gz"
-      sha256 "7563c07b99b1d42e798ed57cb1daa047e1ade382ef3d1b510a4b36a9dbf59939"
+      url "https://github.com/kihyun1998/just-tic/releases/download/v1.2.1/jtic-v1.2.1-aarch64-apple-darwin.tar.gz"
+      sha256 "dbe0da281f6884a64e31c1fc6a8ead5f89247e8c2f1fdf8ccc02fd4e498e3a1e"
     end
     on_intel do
-      url "https://github.com/kihyun1998/just-tic/releases/download/v1.2.0/jtic-v1.2.0-x86_64-apple-darwin.tar.gz"
-      sha256 "f394e258857d9509f8ec27085cf1ede08fadc9d1a396b94c9ff26030351f8c04"
+      url "https://github.com/kihyun1998/just-tic/releases/download/v1.2.1/jtic-v1.2.1-x86_64-apple-darwin.tar.gz"
+      sha256 "cb5f0b708c4b68cd5f3a9b1468061ffeb5e30aaf09800319fabc891ef7512fbd"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/kihyun1998/just-tic/releases/download/v1.2.0/jtic-v1.2.0-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "8016d4719a00f6d108eda2a23b5615685e13363c665ea498fea1f6043eae7454"
+      url "https://github.com/kihyun1998/just-tic/releases/download/v1.2.1/jtic-v1.2.1-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "c155d808e5b133464588b445bc735136676b6ee66d786c1484e293a3e4c7c88e"
     end
   end
 
