@@ -1,0 +1,23 @@
+name: test-install
+
+# formula가 실제로 설치되는지 macOS 러너에서 검증한다.
+# formula 변경 푸시마다 + 수동 실행. brew가 체크섬을 강제 검증하므로
+# 이 테스트의 초록불 = "URL·SHA256·바이너리 전부 정상".
+on:
+  push:
+    paths: ["Formula/**"]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  just-shield:
+    runs-on: macos-latest
+    steps:
+      - name: brew install + smoke test
+        run: |
+          set -euo pipefail
+          brew tap kihyun1998/tap
+          brew install just-shield
+          just-shield scan "$(mktemp -d)"
