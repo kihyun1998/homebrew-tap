@@ -26,6 +26,7 @@ brew upgrade jtic
 | Name | Description |
 |------|-------------|
 | [`jtic`](https://github.com/kihyun1998/just-tic) | One-line CLI showing how many lines you added/removed (+/-) in today's git commits |
+| [`just-shield`](https://github.com/kihyun1998/just-shield) | Pre-execution supply-chain scanner for GitHub Actions workflows |
 
 To add a new tool, drop another Formula `.rb` into `Formula/`.
 
