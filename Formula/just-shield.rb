@@ -2,6 +2,7 @@ class JustShield < Formula
   desc "GitHub Actions 워크플로가 받아 쓰는 액션을 실행 전에 검사하는 공급망 스캐너"
   homepage "https://github.com/kihyun1998/just-shield"
   version "0.1.2"
+  license any_of: ["MIT", "Apache-2.0"]
 
   on_macos do
     on_arm do
