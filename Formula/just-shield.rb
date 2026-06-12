@@ -1,28 +1,28 @@
 class JustShield < Formula
   desc "GitHub Actions 워크플로가 받아 쓰는 액션을 실행 전에 검사하는 공급망 스캐너"
   homepage "https://github.com/kihyun1998/just-shield"
-  version "0.1.4"
+  version "0.2.0"
   license any_of: ["MIT", "Apache-2.0"]
 
   on_macos do
     on_arm do
-      url "https://github.com/kihyun1998/just-shield/releases/download/v0.1.4/just-shield-v0.1.4-aarch64-apple-darwin.tar.gz"
-      sha256 "5bdf1f54950c193507a02ed9398fe57851826090c2999f19e1ed77fc40ae2532"
+      url "https://github.com/kihyun1998/just-shield/releases/download/v0.2.0/just-shield-v0.2.0-aarch64-apple-darwin.tar.gz"
+      sha256 "a2c7b7b0b2e3fe6647b31302b6d04792ccc9be4db4baf1ac1199bdd0751a4df8"
     end
     on_intel do
-      url "https://github.com/kihyun1998/just-shield/releases/download/v0.1.4/just-shield-v0.1.4-x86_64-apple-darwin.tar.gz"
-      sha256 "f9f46e6e71dd4a5040b737efa157e7a0227518d0ce7d9e5019b78de9ec1362c0"
+      url "https://github.com/kihyun1998/just-shield/releases/download/v0.2.0/just-shield-v0.2.0-x86_64-apple-darwin.tar.gz"
+      sha256 "442876a14457a254fd6c6e89c095d4a7b32cbff33d2fa03e4e45dabf013a2129"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/kihyun1998/just-shield/releases/download/v0.1.4/just-shield-v0.1.4-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "9aec6fe914169ac45a25ab0d53ef16beb29f32663402e585f3c0216da6a4e110"
+      url "https://github.com/kihyun1998/just-shield/releases/download/v0.2.0/just-shield-v0.2.0-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "4a7a8d93a0d67a97d0706c08491db3e1a5daed505ddb86825c1ae87a450afee5"
     end
     on_intel do
-      url "https://github.com/kihyun1998/just-shield/releases/download/v0.1.4/just-shield-v0.1.4-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "42ca17aa92b0711a3662c404edc13195675f5405f140fa281fc4690ca9f135fe"
+      url "https://github.com/kihyun1998/just-shield/releases/download/v0.2.0/just-shield-v0.2.0-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "92bd05e09ef758c63fc2adde413e84874f2e8bf37903935067889c96746a837b"
     end
   end
 
