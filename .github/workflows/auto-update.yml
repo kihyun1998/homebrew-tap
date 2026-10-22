@@ -143,3 +143,73 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -am "just-shield $v 자동 업데이트"
           git push
+
+      - name: Update gltree formula
+        run: |
+          set -euo pipefail
+          latest=$(curl -fsSL https://api.github.com/repos/kihyun1998/gltree/releases/latest | jq -r .tag_name)
+          v="${latest#v}"
+          cur=$(grep -oP 'version "\K[^"]+' Formula/gltree.rb)
+          if [ "$v" = "$cur" ]; then
+            echo "이미 최신 ($cur) — 변경 없음"
+            exit 0
+          fi
+          echo "갱신: $cur -> $v"
+          base="https://github.com/kihyun1998/gltree/releases/download/v$v"
+          # 해시는 바이너리를 다시 받아 계산하지 않고 릴리스의 SHA256SUMS에서 읽는다
+          # — 릴리스 워크플로가 출처 증명(attestation)을 발급한 바로 그 파일이다.
+          curl -fsSL "$base/SHA256SUMS" -o sums.txt
+          sha() { awk -v f="$1" '$2 == f {print $1}' sums.txt; }
+          mac_arm=$(sha "gltree-v$v-aarch64-apple-darwin.tar.gz")
+          mac_x64=$(sha "gltree-v$v-x86_64-apple-darwin.tar.gz")
+          linux_arm=$(sha "gltree-v$v-aarch64-unknown-linux-musl.tar.gz")
+          linux_x64=$(sha "gltree-v$v-x86_64-unknown-linux-musl.tar.gz")
+          for h in "$mac_arm" "$mac_x64" "$linux_arm" "$linux_x64"; do
+            if [ -z "$h" ]; then
+              echo "SHA256SUMS에 항목이 없습니다 — 릴리스가 불완전할 수 있어 갱신을 중단합니다" >&2
+              exit 1
+            fi
+          done
+          rm sums.txt
+          cat > Formula/gltree.rb <<EOF
+          class Gltree < Formula
+            desc "본문 첫 줄 Parent: #N 으로 부모를 적는 GitLab 트래커의 이슈 트리 CLI"
+            homepage "https://github.com/kihyun1998/gltree"
+            version "$v"
+            license any_of: ["MIT", "Apache-2.0"]
+
+            on_macos do
+              on_arm do
+                url "$base/gltree-v$v-aarch64-apple-darwin.tar.gz"
+                sha256 "$mac_arm"
+              end
+              on_intel do
+                url "$base/gltree-v$v-x86_64-apple-darwin.tar.gz"
+                sha256 "$mac_x64"
+              end
+            end
+
+            on_linux do
+              on_arm do
+                url "$base/gltree-v$v-aarch64-unknown-linux-musl.tar.gz"
+                sha256 "$linux_arm"
+              end
+              on_intel do
+                url "$base/gltree-v$v-x86_64-unknown-linux-musl.tar.gz"
+                sha256 "$linux_x64"
+              end
+            end
+
+            def install
+              bin.install "gltree"
+            end
+
+            test do
+              assert_match "gltree #{version}", shell_output("#{bin}/gltree --version")
+            end
+          end
+          EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "gltree $v 자동 업데이트"
+          git push

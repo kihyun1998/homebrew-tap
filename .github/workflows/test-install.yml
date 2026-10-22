@@ -21,3 +21,14 @@ jobs:
           brew tap kihyun1998/tap
           brew install just-shield
           just-shield scan "$(mktemp -d)"
+
+  gltree:
+    runs-on: macos-latest
+    steps:
+      - name: brew install + smoke test
+        run: |
+          set -euo pipefail
+          brew tap kihyun1998/tap
+          brew install gltree
+          gltree --version | grep -q "^gltree "
+          gltree roots --help > /dev/null
