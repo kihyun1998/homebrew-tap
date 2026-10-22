@@ -15,6 +15,12 @@ brew tap kihyun1998/tap
 brew install jtic
 ```
 
+Recent Homebrew refuses formulae from a third-party tap until you trust it, once:
+
+```bash
+brew trust kihyun1998/tap
+```
+
 Update:
 
 ```bash
@@ -27,6 +33,7 @@ brew upgrade jtic
 |------|-------------|
 | [`jtic`](https://github.com/kihyun1998/just-tic) | One-line CLI showing how many lines you added/removed (+/-) in today's git commits |
 | [`just-shield`](https://github.com/kihyun1998/just-shield) | Pre-execution supply-chain scanner for GitHub Actions workflows |
+| [`gltree`](https://github.com/kihyun1998/gltree) | Issue trees for GitLab trackers whose parent is the body's first line `Parent: #N` |
 
 To add a new tool, drop another Formula `.rb` into `Formula/`.
 

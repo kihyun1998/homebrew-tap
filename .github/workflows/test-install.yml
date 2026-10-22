@@ -19,6 +19,7 @@ jobs:
         run: |
           set -euo pipefail
           brew tap kihyun1998/tap
+          brew trust kihyun1998/tap
           brew install just-shield
           just-shield scan "$(mktemp -d)"
 
@@ -29,6 +30,7 @@ jobs:
         run: |
           set -euo pipefail
           brew tap kihyun1998/tap
+          brew trust kihyun1998/tap
           brew install gltree
           gltree --version | grep -q "^gltree "
           gltree roots --help > /dev/null
