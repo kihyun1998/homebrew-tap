@@ -34,6 +34,7 @@ brew upgrade jtic
 | [`jtic`](https://github.com/kihyun1998/just-tic) | One-line CLI showing how many lines you added/removed (+/-) in today's git commits |
 | [`just-shield`](https://github.com/kihyun1998/just-shield) | Pre-execution supply-chain scanner for GitHub Actions workflows |
 | [`gltree`](https://github.com/kihyun1998/gltree) | Issue trees for GitLab trackers whose parent is the body's first line `Parent: #N` |
+| [`just-fetch`](https://github.com/kihyun1998/just-fetch) | Fetches every git clone in a folder, shows how each stands against its upstream, and fast-forwards the ones you pick |
 
 To add a new tool, drop another Formula `.rb` into `Formula/`.
 

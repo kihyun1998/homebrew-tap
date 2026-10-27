@@ -34,3 +34,19 @@ jobs:
           brew install gltree
           gltree --version | grep -q "^gltree "
           gltree roots --help > /dev/null
+
+  just-fetch:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [macos-latest, macos-15-intel]
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - name: brew install + smoke test
+        run: |
+          set -euo pipefail
+          brew tap kihyun1998/tap
+          brew trust kihyun1998/tap
+          brew install just-fetch
+          just-fetch --version | grep -q "^just-fetch "
+          just-fetch "$(mktemp -d)"
