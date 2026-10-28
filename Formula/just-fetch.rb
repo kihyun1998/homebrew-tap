@@ -1,5 +1,5 @@
 class JustFetch < Formula
-  desc "폴더 안의 git 클론을 전부 fetch하고 upstream과의 상태를 보여준 뒤 고른 것만 fast-forward하는 CLI"
+  desc "추적하는 폴더의 git 클론을 전부 fetch하고 upstream과의 상태를 보여준 뒤 고른 것만 fast-forward하는 CLI"
   homepage "https://github.com/kihyun1998/just-fetch"
   version "0.1.0"
   license any_of: ["MIT", "Apache-2.0"]
