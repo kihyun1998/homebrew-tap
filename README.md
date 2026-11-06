@@ -35,6 +35,7 @@ brew upgrade jtic
 | [`just-shield`](https://github.com/kihyun1998/just-shield) | Pre-execution supply-chain scanner for GitHub Actions workflows |
 | [`gltree`](https://github.com/kihyun1998/gltree) | Issue trees for GitLab trackers whose parent is the body's first line `Parent: #N` |
 | [`just-fetch`](https://github.com/kihyun1998/just-fetch) | Fetches every git clone in a folder, shows how each stands against its upstream, and fast-forwards the ones you pick |
+| [`clch`](https://github.com/kihyun1998/clch) | Finds the disk space developer tooling leaves behind, tracks it over time, and cleans it safely |
 
 To add a new tool, drop another Formula `.rb` into `Formula/`.
 
