@@ -1,28 +1,28 @@
 class Gltree < Formula
   desc "본문 첫 줄 Parent: #N 으로 부모를 적는 GitLab 트래커의 이슈 트리 CLI"
   homepage "https://github.com/kihyun1998/gltree"
-  version "0.7.0"
+  version "0.8.0"
   license any_of: ["MIT", "Apache-2.0"]
 
   on_macos do
     on_arm do
-      url "https://github.com/kihyun1998/gltree/releases/download/v0.7.0/gltree-v0.7.0-aarch64-apple-darwin.tar.gz"
-      sha256 "1e52341e1e7e8893b5512b803a75334aa533cd34b99f8601692b3f58704e81ba"
+      url "https://github.com/kihyun1998/gltree/releases/download/v0.8.0/gltree-v0.8.0-aarch64-apple-darwin.tar.gz"
+      sha256 "c659b6d34222eaa9d67a72bb0874ea7dd6d88e41c0bca52f33107142e39d54e6"
     end
     on_intel do
-      url "https://github.com/kihyun1998/gltree/releases/download/v0.7.0/gltree-v0.7.0-x86_64-apple-darwin.tar.gz"
-      sha256 "373f93cf6bb18eee224ac57ae53645f78e5b1150b4ce8a005deda7e40307f3be"
+      url "https://github.com/kihyun1998/gltree/releases/download/v0.8.0/gltree-v0.8.0-x86_64-apple-darwin.tar.gz"
+      sha256 "8fe858794cbf11184e7c50f793b747fbec4fa4e37ef3fff55316d6156067fe54"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/kihyun1998/gltree/releases/download/v0.7.0/gltree-v0.7.0-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "76dff20ed0b5847d4d4f5d67f1fdc05f465794da39be2587893f20a741cade79"
+      url "https://github.com/kihyun1998/gltree/releases/download/v0.8.0/gltree-v0.8.0-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "70de798855fe9be509a263ea575f8d783abffac5ce044da67d969818704899fd"
     end
     on_intel do
-      url "https://github.com/kihyun1998/gltree/releases/download/v0.7.0/gltree-v0.7.0-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "ad83d1683aebf393c1314b8f664aab5d167e3f8976b52d7c4019825579951178"
+      url "https://github.com/kihyun1998/gltree/releases/download/v0.8.0/gltree-v0.8.0-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "bb09a758e15c88ca657eb710ce98032a758b70ab9953d6157bc06622ac65f29d"
     end
   end
 
